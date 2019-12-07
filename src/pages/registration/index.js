@@ -32,6 +32,10 @@ export default function Registrasi() {
       ...form,
       [e.target.name]: [e.target.value]
     });
+    setError({
+      ...error,
+      [e.target.name]: ""
+    });
   };
 
   const validate = () => {
@@ -39,7 +43,7 @@ export default function Registrasi() {
 
     if (!form.email) {
       newError.email = "Email wajib diisi";
-    } else if (!isEmail(form.email)) {
+    } else if (!isEmail(form.email[0])) {
       newError.email = "Email tidak valid";
     }
 
@@ -89,6 +93,7 @@ export default function Registrasi() {
             value={form.email}
             onChange={handleChange}
             helperText={error.email}
+            error={error.email ? true : false}
           />
 
           <TextField
@@ -102,6 +107,7 @@ export default function Registrasi() {
             value={form.password}
             onChange={handleChange}
             helperText={error.password}
+            error={error.password ? true : false}
           />
 
           <TextField
@@ -115,6 +121,7 @@ export default function Registrasi() {
             value={form.ulangi_password}
             onChange={handleChange}
             helperText={error.ulangi_password}
+            error={error.ulangi_password ? true : false}
           />
 
           <Grid container className={desain.buttons}>
